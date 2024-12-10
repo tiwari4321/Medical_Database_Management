@@ -1,0 +1,58 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock head %}
+
+{% block body %}
+<section class="form-two">
+	<div class="container">
+		<div class="row">
+			<div class="col-6 border-right">
+				<h1 class="subheading">Reset your Email</h1>
+			</div>
+			<div class="col-6 form">
+
+				<form method="POST" action="/request-reset-email">
+					{% csrf_token %}
+					<h5 clas="row">Email</h5>
+					<div class="row">
+
+						<input type="text" name="email" class="input">
+					</div>
+
+
+
+					<input type="submit" class="btn" value="Submit">
+
+				</form>
+			</div>
+		</div>
+</section>
+
+{% endblock body %}
+
+{% block script %}
+<script>
+	const inputs = document.querySelectorAll(".input");
+
+
+	function addcl() {
+		let parent = this.parentNode.parentNode;
+		parent.classList.add("focus");
+	}
+
+	function remcl() {
+		let parent = this.parentNode.parentNode;
+		if (this.value == "") {
+			parent.classList.remove("focus");
+		}
+	}
+
+
+	inputs.forEach(input => {
+		input.addEventListener("focus", addcl);
+		input.addEventListener("blur", remcl);
+	});
+</script>
+{% endblock script %}

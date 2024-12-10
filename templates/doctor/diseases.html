@@ -1,0 +1,143 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load templatehelper %}
+{% block body %}
+<div class="container">
+<h1> Disease details</h1>
+<form method="post" >
+  {% csrf_token %}
+  {% comment %} <button type="submit" name="follow" value="hi">Download</button> {% endcomment %}
+  <button class=" btn  btn-primary" name="follow" value="unfollow">
+    Download images
+</button>
+
+<button class="btn btn-primary" name="follow" value="follow">
+    Download XL file
+</button>
+</form>
+<br>
+<form method="get" >
+  {{myfilter.form}}
+  <button type="submit" class="  btn btn-info">Search</button>
+</form> 
+<br>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Diagonised</th>
+            <th scope="col">Modality</th>
+            <th scope="col">Organ</th>
+            <th scope="col">Physiological Data</th>
+            {% comment %} <th scope="col">Image</th> {% endcomment %}
+            <th scope="col">Image</th>
+          </tr>
+        </thead>
+        <tbody>
+            {%for disease in diseases %}
+          <tr>
+            <td>{{disease.name}}</td>
+            <td>{{disease.diagonised}}</td>
+            <td>{{disease.modality}}</td>
+            <td>{{disease.organ}}</td>
+            <td ><button type="button" class ="btn btn-primary" onclick="window.location.href='{% url 'physiological_data' %}'">View File</button></td>
+            {% comment %} <td >{{disease.img}}</td> {% endcomment %}
+            
+            <td> <button type="button" class ="btn btn-primary"onclick="myfun('{{disease.img}}')">View img</button></td>
+          </tr>
+          {%endfor%}
+        </tbody>
+      </table>
+ 
+      <form method="post" action="{% url 'input_data' %}">
+        {% csrf_token %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Diagonised</th>
+                    <th>Modality</th>
+                </tr>
+            </thead>
+            <tbody id="data-rows">
+                {% for disease in diseases %}
+                <tr>
+                    <td><input type="text" name="name" value="{{ disease.name }}" required></td>
+                    <td><input type="text" name="age" value="{{ disease.diagonised }}" required></td>
+                    <td><input type="text" name="city" value="{{ disease.modality }}" required></td>
+                </tr>
+              
+                {% endfor %}
+            </tbody>
+        </table>
+        <button type="button" onclick="addRow()">Add Row</button>
+        <button type="submit">Download Excel</button>
+    </form>
+
+      <nav aria-label="...">
+        <ul class="pagination">
+          {%if diseases.has_previous %}
+          <li class="page-item ">
+            <a class="page-link" href="{% relative_url diseases.previous_page_number 'page' request.GET.urlencode %}" >Previous</a>
+          </li>
+          {% endif %}
+          {% comment %} <li class="page-item"><a class="page-link" href="?page=1">1</a></li> {% endcomment %}
+          <li class="page-item ">
+            <a class="page-link" href="{% relative_url diseases.number 'page' request.GET.urlencode %}">{{diseases.number}}</a>
+          </li>
+          {% comment %} <li class="page-item"><a class="page-link" href="{% relative_url 3 'page' request.GET.urlencode %}">3</a></li> {% endcomment %}
+          {%if diseases.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="{% relative_url diseases.next_page_number 'page' request.GET.urlencode %}">Next</a>
+          </li>
+          {%endif%}
+        </ul>
+      </nav>
+</div>
+
+<div id="myModal" class="modal container">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img01">
+  <div id="caption"></div>
+</div>
+
+{% endblock body %}
+
+{% block script %}
+<script>
+  function addRow() {
+    const table = document.getElementById('data-rows');
+    const newRow = document.createElement('tr');
+
+    newRow.innerHTML = `
+        <td><input type="text" name="name" required></td>
+        <td><input type="text" name="diagonised" required></td>
+        <td><input type="text" name="modality" required></td>
+    `;
+
+    table.appendChild(newRow);
+}
+var modal = document.getElementById("myModal");
+
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+function myfun(parameter)
+{
+  modal.style.display = "block";
+  console.log(parameter)
+  modalImg.src = "http://127.0.0.1:8000/media/"+parameter;
+  
+  
+}
+
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() { 
+  modal.style.display = "none";
+}
+</script>
+{% endblock script %}

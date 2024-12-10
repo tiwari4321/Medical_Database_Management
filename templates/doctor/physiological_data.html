@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physiological Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #74ebd5, #9face6);
+            background-attachment: fixed;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 10px;
+            font-size: 28px;
+            color: #444;
+        }
+        h2 {
+            margin-bottom: 30px;
+            font-size: 24px;
+            color: #666;
+        }
+        .download-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .download-btn:hover {
+            background-color: #0056b3;
+        }
+        .table-container {
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+    <script>
+        function downloadExcel() {
+            let table = document.querySelector("table");
+            let rows = Array.from(table.rows).map(row =>
+                Array.from(row.cells).map(cell => cell.innerText).join(",")
+            ).join("\n");
+
+            let blob = new Blob([rows], { type: 'text/csv' });
+            let link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "Physiological_Data.csv";
+            link.click();
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Physiological Report</h1>
+        <h2>Report of John Doe</h2>
+        <button class="download-btn" onclick="downloadExcel()">Download as Excel</button>
+        <div class="table-container">
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Full Name</th>
+                        <td>John Doe</td>
+                    </tr>
+                    <tr>
+                        <th>Age</th>
+                        <td>29</td>
+                    </tr>
+                    <tr>
+                        <th>Gender</th>
+                        <td>Male</td>
+                    </tr>
+                    <tr>
+                        <th>Heart Rate (bpm)</th>
+                        <td>72</td>
+                    </tr>
+                    <tr>
+                        <th>Blood Pressure (mmHg)</th>
+                        <td>120/80</td>
+                    </tr>
+                    <tr>
+                        <th>Oxygen Saturation (%)</th>
+                        <td>98</td>
+                    </tr>
+                    <tr>
+                        <th>Height (cm)</th>
+                        <td>175</td>
+                    </tr>
+                    <tr>
+                        <th>Weight (kg)</th>
+                        <td>70</td>
+                    </tr>
+                    <tr>
+                        <th>Body Mass Index (BMI)</th>
+                        <td>22.9</td>
+                    </tr>
+                    <tr>
+                        <th>Cholesterol Level (mg/dL)</th>
+                        <td>180</td>
+                    </tr>
+                    <tr>
+                        <th>Blood Sugar Level (mg/dL)</th>
+                        <td>90</td>
+                    </tr>
+                    <tr>
+                        <th>Respiratory Rate (breaths/min)</th>
+                        <td>16</td>
+                    </tr>
+                    <tr>
+                        <th>Temperature (°C)</th>
+                        <td>36.8</td>
+                    </tr>
+                    <tr>
+                        <th>ECG Result</th>
+                        <td>Normal</td>
+                    </tr>
+                    <tr>
+                        <th>Allergies</th>
+                        <td>None</td>
+                    </tr>
+                    <tr>
+                        <th>Notes</th>
+                        <td>Healthy and active individual.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

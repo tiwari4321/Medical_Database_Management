@@ -1,0 +1,59 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load templatehelper %}
+{% block body %}
+
+<div class="container">
+  <h1> Patient details</h1>
+  
+  <form method="get"  >
+    <div class="form-group">
+      <label for="exampleInputEmail1">Name</label>
+    {{myfilter.form.first_name}}
+    <button type="submit" class=" btn btn-info">Search</button>
+    </div>
+  </form>
+<br>
+<div class="row ">
+  {% for patient in patients %}
+  <div class="col-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <h4 class="card-title">{{patient.first_name}} {{patient.last_name}}</h4>
+        <div class="d-flex flex-column">
+        <p class=" h6">City: {{patient.city}} </p>
+        <p class="h6">Blood Group: {{patient.blood_group}}</p>
+        <p class="h6">Hospital: {{patient.hospital}}</p>
+        <p class="h6">Phone No: {{patient.phone}}</p>
+        <p class="h6">Date of Birth: {{patient.dob}}</p>
+        <button class="btn-primary"><a class="nav-link" href="{%url 'show_patient_details' patient.id%}">View</a></button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  {%endfor%}
+</div>
+<nav aria-label="...">
+  <ul class="pagination">
+    {%if patients.has_previous %}
+    <li class="page-item ">
+      <a class="page-link" href="{% relative_url patients.previous_page_number 'page' request.GET.urlencode %}" >Previous</a>
+    </li>
+    {% endif %}
+    {% comment %} <li class="page-item"><a class="page-link" href="?page=1">1</a></li> {% endcomment %}
+    <li class="page-item ">
+      <a class="page-link" href="{% relative_url patients.number 'page' request.GET.urlencode %}">{{patients.number}}</a>
+    </li>
+    {% comment %} <li class="page-item"><a class="page-link" href="{% relative_url 3 'page' request.GET.urlencode %}">3</a></li> {% endcomment %}
+    {%if patients.has_next %}
+    <li class="page-item">
+      <a class="page-link" href="{% relative_url patients.next_page_number 'page' request.GET.urlencode %}">Next</a>
+    </li>
+    {%endif%}
+  </ul>
+</nav>
+</div>
+  
+{% endblock body %}

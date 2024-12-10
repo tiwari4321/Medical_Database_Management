@@ -1,0 +1,129 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock head %}
+
+{% block body %}
+<div class="container" style="display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #f0f2f5;">
+	<div style="width: 100%; max-width: 400px; padding: 30px; background: #ffffff; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
+		<form method="POST" action="/signup_doctor">
+			{% csrf_token %}
+
+			<h5 style="color: #333;text-align: center;font-family: 'Pacifico', cursive;font-size: 28px;">Sign-Up</h5>
+			<h6 style="margin-bottom: 40px;color: #333;text-align: center;font-family: 'Pacifico', cursive;font-size: 18px;">As Doctor</h6>
+			<div style="margin-bottom: 15px;">
+				<input type="email" class="form-control" name="email" placeholder="Email" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;" required>
+			</div>
+
+			<div style="margin-bottom: 15px;">
+				<input type="password" class="form-control" name="password" placeholder="Password" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;" required>
+			</div>
+
+			<div style="margin-bottom: 20px;">
+				<input type="password" class="form-control" name="confpassword" placeholder="Confirm Password" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;" required>
+			</div>
+
+			<div style="margin-bottom: 20px;">
+				<input type="text" class="form-control" id="licenseKey" name="license_key" placeholder="License Key" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;" required>
+				<span id="licenseError" style="display: none; color: red; font-size: 12px;">Invalid License Key</span>
+			</div>
+
+			<div style="margin-bottom: 15px;">
+				<input type="submit" id="submitButton" class="btn formbtn" value="Sign Up" style="width: 100%; padding: 12px; background-color: #f06292; color: #fff; border: none; border-radius: 5px; cursor: pointer;" disabled>
+			</div>
+			<div style="text-align: center;">
+				<a
+				  href="{% url 'signup_researcher' %}"
+				  style="color: #007bff; font-size: 14px; text-decoration: none;"
+				>
+					Not a Doctor? Sign up as a Researcher
+				</a>
+			  </div>
+		</form>
+	</div>
+</div>
+{% endblock body %}
+
+{% block script %}
+<script>
+	const validLicenseKey = "ABC123"; // Replace with your actual valid license key
+	const licenseInput = document.getElementById("licenseKey");
+	const submitButton = document.getElementById("submitButton");
+	const licenseError = document.getElementById("licenseError");
+
+	licenseInput.addEventListener("input", () => {
+		if (licenseInput.value === validLicenseKey) {
+			licenseError.style.display = "none";
+			submitButton.disabled = false;
+		} else {
+			licenseError.style.display = "inline";
+			submitButton.disabled = true;
+		}
+	});
+</script>
+{% endblock script %}
+{% comment %} {% extends 'basic.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock head %}
+
+{% block body %}
+
+		<div class="container" style="display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #f0f2f5;">
+			<div style="width: 100%; max-width: 400px; padding: 30px; background: #ffffff; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
+				<form method="POST" action="/signup_doctor">
+					{% csrf_token %}
+		
+					<h5 style="color: #333;text-align: center;font-family: 'Pacifico', cursive;font-size: 28px;">Sign-Up</h5>
+					<h6 style="margin-bottom: 40px;color: #333;text-align: center;font-family: 'Pacifico', cursive;font-size: 18px;">As Doctor</h6>
+					<div style="margin-bottom: 15px;">
+						<input type="email" class="form-control" name="email" placeholder="Email" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;" required>
+					</div>
+		
+					
+					<div style="margin-bottom: 15px;">
+						<input type="password" class="form-control" name="password" placeholder="Password" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;" required>
+					</div>
+		
+					
+					<div style="margin-bottom: 20px;">
+						<input type="password" class="form-control" name="confpassword" placeholder="Confirm Password" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;" required>
+					</div>
+		
+					<div style="margin-bottom: 15px;">
+						<input type="submit" class="btn formbtn" value="Sign Up" style="width: 100%; padding: 12px; background-color: #f06292; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
+					</div>
+				</form>
+			</div>
+		</div>
+		
+
+
+	{% endblock body %}
+
+	{% block script %}
+	<script>
+		const inputs = document.querySelectorAll(".input");
+
+
+		function addcl() {
+			let parent = this.parentNode.parentNode;
+			parent.classList.add("focus");
+		}
+
+		function remcl() {
+			let parent = this.parentNode.parentNode;
+			if (this.value == "") {
+				parent.classList.remove("focus");
+			}
+		}
+
+
+		inputs.forEach(input => {
+			input.addEventListener("focus", addcl);
+			input.addEventListener("blur", remcl);
+		});
+	</script>
+	{% endblock script %} {% endcomment %}

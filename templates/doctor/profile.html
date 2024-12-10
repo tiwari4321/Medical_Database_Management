@@ -1,0 +1,59 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block body %}
+<div class="container">
+  <div class="card mb-3 mt-3">
+    <div class="card-body" >
+      <h1 class="card-title">{{doctor.first_name}} {{doctor.last_name}}</h1>
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <td>Gender:</td>
+            <td>{{doctor.get_gender_display}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Email Id:</td>
+            <td>{{doctor.doctor.email}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Phone No.:</td>
+            <td>{{doctor.phone}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Specialization: </td>
+            <td>{{doctor.specialization}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Date of Birth: </td>
+            <td>{{doctor.dob}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+   {% if doctor.verified_phone %}
+  <h2 class="card-title card"> Your phone is already verified</h2>
+  {% else %} 
+  <button class="btn-primary"><a class="nav-link" href="{%url 'otp_verify'%}">Otp verify</a></button>
+  {% endif%}
+  
+</div>
+
+{% endblock body %}

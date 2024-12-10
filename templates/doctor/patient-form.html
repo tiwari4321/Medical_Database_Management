@@ -1,0 +1,67 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block body %}
+<section class="formtwo">
+  <div class="container">
+
+
+    <div class="row">
+      <div class="col-6 border-right">
+        <h1 class="subheading">Add patient </h1>
+      </div>
+      <div class="col-6 form">
+        <form method="POST">
+          {% csrf_token %}
+          <h5 class="row ">First Name</h5>
+          <div class="row myinput">
+            {{ form.first_name }}
+          </div>
+          <h5 class="row myinput">Last Name</h5>
+          <div class="row">
+
+            {{ form.last_name}}
+          </div>
+          <h5 class="row">Gender</h5>
+          <div class="row">
+
+            {{ form.gender }}
+          </div>
+          <h5 class="row">City</h5>
+          <div class="row">
+
+            {{ form.city }}
+          </div class="row">
+          <h5 class="row">Phone No.</h5>
+          <div class="row">
+
+            {{ form.phone}}
+          </div>
+          <h5 class="row">Hostpital</h5>
+          <div class="row">
+
+            {{ form.hospital}}
+          </div>
+          <h5 class="row">Blood Group</h5>
+          <div class="row">
+
+            {{ form.blood_group}}
+          </div>
+          <h5 class="row">Date of Birth</h5>
+          <div class="row">
+
+            {{ form.dob}}
+          </div>
+
+
+          <br>
+          <div class="row">
+            <button type="submit" class=" btn btn-primary">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock body %}

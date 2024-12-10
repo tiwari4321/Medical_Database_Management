@@ -1,0 +1,131 @@
+{% extends 'basic.html' %} 
+{% load static %} 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}" />
+{% endblock head %} 
+{% block body %}
+
+<div 
+class="container"
+style="
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 20px;
+"
+>
+<form
+	method="POST"
+	action="/login"
+	style="
+		
+		width: 100%;
+		max-width: 400px;
+		padding: 30px;
+		background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+		background-image: url('{% static 'Images/image3.webep' %}');
+		border-radius: 10px;
+		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+	"
+>
+	{% csrf_token %}
+
+	<h5 style="margin-bottom: 40px; color: #333;text-align: center;font-family: 'Pacifico', cursive;font-size: 28px;">Login</h5>
+	<div style="margin-bottom: 15px;">
+		<input
+			type="email"
+			class="form-control"
+			name="email"
+			placeholder="Email"
+			style="
+				width: 100%;
+				padding: 12px;
+				border-radius: 5px;
+				border: 1px solid #ccc;
+				font-size: 14px;
+				color: #333;
+			"
+		/>
+	</div>
+
+	{% comment %} <h5 style="margin-bottom: 10px; color: #333; font-weight: bold;">Password :</h5> {% endcomment %}
+	<div style="margin-bottom: 15px;">
+		<input
+			type="password"
+			class="form-control"
+			name="password"
+			placeholder="Password"
+			style="
+				width: 100%;
+				padding: 12px;
+				border-radius: 5px;
+				border: 1px solid #ccc;
+				font-size: 14px;
+				color: #333;
+			"
+		/>
+	</div>
+
+	<div style="margin-bottom: 20px;">
+		<input
+			type="submit"
+			class="btn formbtn"
+			value="Login"
+			style="
+				width: 100%;
+				padding: 12px;
+				background-color: #F06292;
+				color: #fff;
+				border: none;
+				border-radius: 5px;
+				cursor: pointer;
+				font-size: 16px;
+			"
+		/>
+	</div>
+
+	<div style="text-align: center;">
+		<a
+			href="{% url 'request-reset-email' %}"
+			style="color: #007bff; font-size: 14px; text-decoration: none; display: block; margin-bottom: 10px;"
+		>
+			Forgot Password?
+		</a>
+		<a
+			href="{% url 'signup_researcher' %}"
+			style="color: #007bff; font-size: 14px; text-decoration: none;"
+		>
+			Don't have an account? Signup
+		</a>
+	</div>
+</form>
+</div>
+
+
+  {% endblock body %} {% block script %}
+  <script>
+    const inputs = document.querySelectorAll(".input");
+    function addcl() {
+      let parent = this.parentNode.parentNode;
+      parent.classList.add("focus");
+    }
+
+    function remcl() {
+      let parent = this.parentNode.parentNode;
+      if (this.value == "") {
+        parent.classList.remove("focus");
+      }
+    }
+
+    inputs.forEach((input) => {
+      input.addEventListener("focus", addcl);
+      input.addEventListener("blur", remcl);
+    });
+  </script>
+  {% endblock script %}
+</body>

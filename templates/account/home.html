@@ -1,0 +1,178 @@
+{% extends 'basic.html' %} {% load static %} {% block head %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}" />
+{% endblock head %} {% block body %} {% comment %}
+<section id="title" style="background-color: white">
+  {% endcomment %}
+  <section id="home" style="background-color: #f8f9fa; padding: 2rem 1rem">
+    {% comment %}
+    <div class="container-fluid">
+      <h1 class="heading" style="font-family: 'Montserrat', cursive">
+        Welcome to Med-Data
+      </h1>
+    </div>
+    {% endcomment %}
+
+    <div style="max-width: 1200px; margin: 0 auto; text-align: center">
+      <!-- Hero Section -->
+      <h1
+        style="
+          font-family: 'Montserrat', sans-serif;
+          font-size: 2.5rem;
+          color: #0056b3;
+          margin-bottom: 1rem;
+        "
+      >
+        Welcome to Med-Data
+      </h1>
+      <p
+        style="
+          font-size: 1.2rem;
+          color: #333;
+          margin-bottom: 2rem;
+          line-height: 1.6;
+        "
+      >
+        Empowering healthcare providers with secure and efficient medical data
+        solutions.
+      </p>
+    </div>
+
+    <!-- Services Section -->
+    <div
+      style="
+        margin-top: 3rem;
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      "
+    >
+      <!-- Service Card 1 -->
+      <div
+        style="
+          background: white;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          padding: 2rem;
+          border-radius: 10px;
+          max-width: 300px;
+          text-align: center;
+        "
+      >
+        <img src= {% static "images/card2.jpg" %} alt="Data Collection Icon"
+        style="width: 100px; height: 100px; margin-bottom: 1rem;">
+        <h3 style="color: #0056b3; font-size: 1.5rem; margin-bottom: 1rem">
+          Data Collection
+        </h3>
+        <p style="font-size: 1rem; color: #555">
+          Secure tools to collect and manage medical data in real-time.
+        </p>
+      </div>
+
+      <!-- Service Card 2 -->
+      <div
+        style="
+          background: white;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          padding: 2rem;
+          border-radius: 10px;
+          max-width: 300px;
+          text-align: center;
+        "
+      >
+        <img src= {% static "images/card3.jpg" %} alt="Data Collection Icon"
+        style="width: 100px; height: 100px; margin-bottom: 1rem;">
+        <h3 style="color: #0056b3; font-size: 1.5rem; margin-bottom: 1rem">
+          Data Analytics
+        </h3>
+        <p style="font-size: 1rem; color: #555">
+          Turn complex data into actionable insights with advanced analytics.
+        </p>
+      </div>
+      <!-- Service Card 3 -->
+      <div
+        style="
+          background: white;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          padding: 2rem;
+          border-radius: 10px;
+          max-width: 300px;
+          text-align: center;
+        "
+      >
+        <img src= {% static "images/card4.jpg" %} alt="Data Collection Icon"
+        style="width: 100px; height: 100px; margin-bottom: 1rem;">
+        <h3 style="color: #0056b3; font-size: 1.5rem; margin-bottom: 1rem">
+          Compliance
+        </h3>
+        <p style="font-size: 1rem; color: #555">
+          Ensure compliance with global healthcare data regulations.
+        </p>
+      </div>
+    </div>
+    {% comment %}
+  </section>
+  {% endcomment %}
+  <br />
+  <div style="text-align: center">
+    <button 
+      onclick="window.location.href='{% url 'about' %}'"
+      {% comment %} href="{%url 'login'%}" {% endcomment %}
+      style="
+        background-color: #0056b3;
+        color: white;
+        border: none;
+        padding: 1.2rem 2rem;
+        border-radius: 50px;
+        font-size: 1rem;
+        cursor: pointer;
+      "
+      
+    >
+      Learn More
+    </button>
+  </div>
+  {% comment %}
+  <button
+    style="
+      text-align: center;
+      background-color: #0056b3;
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-size: 1rem;
+      cursor: pointer;
+    "
+  >
+    Learn More
+  </button>
+  {% endcomment %}
+  <hr />
+  <footer
+    class="footer"
+    style="
+      background-color: white;
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+    "
+  >
+    <div class="footer-content" style="margin: 0 auto; max-width: 800px">
+      <p style="margin-bottom: 1rem">
+        &copy; 2024 MediData. All Rights Reserved.
+      </p>
+      <ul
+        class="footer-links"
+        style="
+          list-style: none;
+          padding: 0;
+          display: flex;
+          justify-content: center;
+          gap: 1rem;
+          margin: 0;
+        "
+      ></ul>
+    </div>
+  </footer>
+</section>
+{% endblock body%}

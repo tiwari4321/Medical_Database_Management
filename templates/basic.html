@@ -1,0 +1,331 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Med-Data </title>
+    <link rel="icon" type="image/png" href={% static "/images/favcon1.png" %}>
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/basic.css' %}" />
+    <!-- Bootstrap CSS extension -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="{% static 'css/basic.css' %}" />
+  </head>
+
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="container navbar navbar-expand-lg" style="background-color: white; padding: 0.8rem;">
+      <a class="navbar-brand" href="{%url 'index'%}">Med-Data</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          {% if user.is_doctor%}
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'profile_user'%}">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'show_disease'%}">Show disease</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'add_patient'%}">Add Patient</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'show_patient'%}">Show Patient</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'logout'%}">Log out</a>
+          </li>
+          {% elif user.is_researcher %} {% comment %}
+          <li class="nav-item">
+            <button
+              class="nav-link btn btn-primary"
+              onclick="window.location.href='{% url 'profile_user' %}'"
+            >
+              Profile
+            </button>
+          </li>
+          {% endcomment %} {% comment %}
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'profile_user'%}">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'show_disease'%}">Show disease</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'logout'%}">Logout</a>
+          </li>
+          {% endcomment %}
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              href="{% url 'profile_user' %}"
+              style="
+                display: inline-block;
+                padding: 8px 16px;
+                font-size: 1.1rem;
+                text-align: center;
+                border-radius: 50px;
+                font-weight: 600;
+                text-decoration: none;
+                transition: all 0.4s ease;
+                color: #fff;
+                background-color: #ff4081;
+                border: 2px solid transparent;
+                box-shadow: 0 5px 15px rgba(255, 64, 129, 0.3);
+              "
+              onmouseover="this.style.backgroundColor = '#f50057'; this.style.boxShadow = '0 6px 20px rgba(255, 0, 87, 0.4)';"
+              onmouseout="this.style.backgroundColor = '#ff4081'; this.style.boxShadow = '0 5px 15px rgba(255, 64, 129, 0.3)';"
+            >
+              Profile
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              href="{% url 'show_disease' %}"
+              style="
+                display: inline-block;
+                padding: 8px 16px;
+                font-size: 1.1rem;
+                text-align: center;
+                border-radius: 50px;
+                font-weight: 600;
+                text-decoration: none;
+                transition: all 0.4s ease;
+                color: #fff;
+                background-color: #00bcd4;
+                border: 2px solid transparent;
+                box-shadow: 0 5px 15px rgba(0, 188, 212, 0.3);
+              "
+              onmouseover="this.style.backgroundColor = '#0097a7'; this.style.boxShadow = '0 6px 20px rgba(0, 151, 167, 0.4)';"
+              onmouseout="this.style.backgroundColor = '#00bcd4'; this.style.boxShadow = '0 5px 15px rgba(0, 188, 212, 0.3)';"
+            >
+              Show Disease
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              href="{% url 'logout' %}"
+              style="
+                display: inline-block;
+                padding: 8px 16px;
+                font-size: 1.1rem;
+                text-align: center;
+                border-radius: 50px;
+                font-weight: 600;
+                text-decoration: none;
+                transition: all 0.4s ease;
+                color: #fff;
+                background-color: #ff5722;
+                border: 2px solid transparent;
+                box-shadow: 0 5px 15px rgba(255, 87, 34, 0.3);
+              "
+              onmouseover="this.style.backgroundColor = '#e64a19'; this.style.boxShadow = '0 6px 20px rgba(230, 74, 25, 0.4)';"
+              onmouseout="this.style.backgroundColor = '#ff5722'; this.style.boxShadow = '0 5px 15px rgba(255, 87, 34, 0.3)';"
+            >
+              Logout
+            </a>
+          </li>
+
+          {% else %} {% comment %}
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'index'%}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'signup_researcher'%}"
+              >ResearcherSignup</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'signup_doctor'%}">DoctorSignup</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'login'%}">Login</a>
+          </li>
+          {% endcomment %}
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              href="{% url 'index' %}"
+              style="
+                display: inline-block;
+                padding: 6px 16px;
+                font-size: 1.1rem;
+                text-align: center;
+                border-radius: 50px;
+                font-weight: 600;
+                text-decoration: none;
+                transition: all 0.4s ease;
+                color: #fff;
+                background-color: #2196f3;
+                border: 2px solid transparent;
+                box-shadow: 0 5px 15px rgba(33, 150, 243, 0.3);
+              "
+              onmouseover="this.style.backgroundColor = '#1976d2'; this.style.boxShadow = '0 6px 20px rgba(25, 118, 210, 0.4)';"
+              onmouseout="this.style.backgroundColor = '#2196f3'; this.style.boxShadow = '0 5px 15px rgba(33, 150, 243, 0.3)';"
+            >
+              Home
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              href="{% url 'signup_researcher' %}"
+              style="
+                display: inline-block;
+                padding: 6px 16px;
+                font-size: 1.1rem;
+                text-align: center;
+                border-radius: 50px;
+                font-weight: 600;
+                text-decoration: none;
+                transition: all 0.4s ease;
+                color: #fff;
+                background-color: #4caf50;
+                border: 2px solid transparent;
+                box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+              "
+              onmouseover="this.style.backgroundColor = '#388e3c'; this.style.boxShadow = '0 6px 20px rgba(56, 142, 60, 0.4)';"
+              onmouseout="this.style.backgroundColor = '#4caf50'; this.style.boxShadow = '0 5px 15px rgba(76, 175, 80, 0.3)';"
+            >
+              Researcher Signup
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              href="{% url 'signup_doctor' %}"
+              style="
+                display: inline-block;
+                padding: 6px 16px;
+                font-size: 1.1rem;
+                text-align: center;
+                border-radius: 50px;
+                font-weight: 600;
+                text-decoration: none;
+                transition: all 0.4s ease;
+                color: #fff;
+                background-color: #f44336;
+                border: 2px solid transparent;
+                box-shadow: 0 5px 15px rgba(244, 67, 54, 0.3);
+              "
+              onmouseover="this.style.backgroundColor = '#e53935'; this.style.boxShadow = '0 6px 20px rgba(229, 57, 53, 0.4)';"
+              onmouseout="this.style.backgroundColor = '#f44336'; this.style.boxShadow = '0 5px 15px rgba(244, 67, 54, 0.3)';"
+            >
+              Doctor Signup
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              href="{% url 'login' %}"
+              style="
+                display: inline-block;
+                padding: 6px 16px;
+                font-size: 1.1rem;
+                text-align: center;
+                border-radius: 50px;
+                font-weight: 600;
+                text-decoration: none;
+                transition: all 0.4s ease;
+                color: #fff;
+                background-color: #673ab7;
+                border: 2px solid transparent;
+                box-shadow: 0 5px 15px rgba(103, 58, 183, 0.3);
+              "
+              onmouseover="this.style.backgroundColor = '#5e35b1'; this.style.boxShadow = '0 6px 20px rgba(94, 53, 177, 0.4)';"
+              onmouseout="this.style.backgroundColor = '#673ab7'; this.style.boxShadow = '0 5px 15px rgba(103, 58, 183, 0.3)';"
+            >
+              Login
+            </a>
+          </li>
+
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+    {%block body%} {% endblock body %} {%block script%} {% endblock script %}
+    {%for message in messages%}
+    <div
+      class="alert alert-{{ message.tags }} alert-dismissible fade show"
+      role="alert"
+    >
+      <strong>message:</strong> {{ message }}
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %}
+    <script>
+      
+      const menuBtn = document.querySelector(".menu-icon span");
+      const searchBtn = document.querySelector(".search-icon");
+      const cancelBtn = document.querySelector(".cancel-icon");
+      const items = document.querySelector(".nav-items");
+      const form = document.querySelector("form");
+      menuBtn.onclick = () => {
+        items.classList.add("active");
+        menuBtn.classList.add("hide");
+        searchBtn.classList.add("hide");
+        cancelBtn.classList.add("show");
+      };
+      cancelBtn.onclick = () => {
+        items.classList.remove("active");
+        menuBtn.classList.remove("hide");
+        searchBtn.classList.remove("hide");
+        cancelBtn.classList.remove("show");
+        form.classList.remove("active");
+        cancelBtn.style.color = "#ff3d00";
+      };
+      searchBtn.onclick = () => {
+        form.classList.add("active");
+        searchBtn.classList.add("hide");
+        cancelBtn.classList.add("show");
+      };
+    </script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
