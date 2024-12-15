@@ -34,16 +34,82 @@
           </div > 
           <h5 class="row">Add image</h5>
           <div class="row">
-
             {{ form.img}}
           </div>
           
+          <h5 class="row">Systolic blood pressure</h5>
+          <div class="row">
+            {{ form.systolic_blood_pressure}}
+          </div>
+          <h5 class="row">Diastolic blood pressure</h5>
+          <div class="row">
+            {{ form.diastolic_blood_pressure}}
+          </div>
+          <h5 class="row">Cholesterol levels</h5>
+          <div class="row">
+            {{ form.cholesterol_level}}
+          </div>
+          <h5 class="row">Diabetes (Sugar level)</h5>
+          <div class="row">
+            {{ form.sugar_level}}
+          </div>
+          <h5 class="row">Blood Oxygen Saturation</h5>
+          <div class="row">
+            {{ form.blood_oxygen_saturation}}
+          </div>
+          <h5 class="row">Heart rate</h5>
+          <div class="row">
+            {{ form.heart_rate}}
+          </div>
+          <h5 class="row">Smoking</h5>
+          <div class="row">
+            {{ form.smoking}}
+          </div>
+          <h5 class="row">Alcohol</h5>
+          <div class="row">
+            {{ form.alcohol}}
+          </div>
+          <h5 class="row">Age</h5>
+          <div class="row">
+            {{ form.age}}
+          </div>
+          <h5 class="row">Physically Inactive</h5>
+          <div class="row">
+            {{ form.physically_inactive}}
+          </div>
+          <h5 class="row">Stress</h5>
+          <div class="row">
+            {{ form.stress}}
+          </div>
+          <h5 class="row">Weight (in kg)</h5>
+          <div class="row">
+            {{ form.weight}}
+          </div>
+          <h5 class="row">Height (in cm)</h5>
+          <div class="row">
+            {{ form.height}}
+          </div>
+          <h5 class="row">Gender</h5>
+          <div class="row">
+            {{ form.gender}}
+          </div>
+          <h5 class="row">Electrolyte Level</h5>
+          <div class="row">
+            {{ form.electrolyte_level}}
+          </div>
+          <h5 class="row">Chronic Kidney</h5>
+          <div class="row">
+            {{ form.chronic_kidney}}
+          </div>
+
+
+
           <div class="row">
             <button type="submit" class="titlebutton formbtn btn btn-md">Save</button>
           </div>
         </form>
       </div>
-      <div class="col-6 form">
+      {% comment %} <div class="col-6 form">
         <form method="POST" enctype="multipart/form-data">
           {% csrf_token %}
           <h5 class="row myinput"> Enter Blood Group</h5>
@@ -76,7 +142,7 @@
             <button type="submit" class="titlebutton formbtn btn btn-md">Save</button>
           </div>
         </form>
-      </div>
+      </div> {% endcomment %}
     </div>
   </div>
 </section>

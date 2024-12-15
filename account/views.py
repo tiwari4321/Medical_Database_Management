@@ -166,6 +166,7 @@ def about(request):
 def Physiological_data(request):
     return render(request, 'doctor/physiological_data.html')
 
+
 class ActivateAccountView(View):
     def get(self,request,uidb64,token):
         try:

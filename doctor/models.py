@@ -83,6 +83,17 @@ Possibility = (
 ("NO", "NO"),
 )
 
+Possibility2 = (
+("BALANCED", "BALANCED"),
+("UNBALANCED", "UNBALANCED"),
+)
+
+gender_choices = (
+("MALE", "MALE"),
+("FEMALE", "FEMALE"),
+)
+
+
 TypeofModality = (
     ("X-ray","X-ray"),
     ("CT-scan","CT-scan"),
@@ -93,8 +104,6 @@ TypeofModality = (
     ("PET","PET"),
     ("OCT","OCT")
 )
-
-
 
 MEDIA_CHOICES = [
     ('Audio', (
@@ -118,6 +127,23 @@ class DiseaseDetails(models.Model):
     diagonised = models.CharField(max_length = 20, choices = Possibility, default = 'YES')
     img=models.ImageField(upload_to=get_upload_path,null=True)
     date = models.DateTimeField(null=True)
+    age = models.IntegerField(default=0)
+    systolic_blood_pressure = models.FloatField(default=0)
+    diastolic_blood_pressure = models.FloatField(default=0)
+    cholesterol_level = models.FloatField(default=0)
+    sugar_level = models.FloatField(default=0)
+    blood_oxygen_saturation = models.FloatField(default=0)
+    heart_rate = models.FloatField(default=0)
+    smoking = models.CharField(max_length=4,choices=Possibility,default="Yes")
+    alcohol = models.CharField(max_length=4,choices=Possibility,default="Yes")
+    physically_inactive = models.CharField(max_length=4,choices=Possibility,default="Yes")
+    stress = models.CharField(max_length=4,choices=Possibility,default="Yes")
+    weight = models.IntegerField(default=0)
+    height = models.IntegerField(default=0)
+    gender = models.CharField(max_length=10,choices = gender_choices,default="Male")
+    electrolyte_level = models.CharField(max_length=15,choices=Possibility2,default="Yes")
+    chronic_kidney = models.CharField(max_length=4,choices=Possibility,default="Yes")
+
 
     def __str__(self):
         return self.name

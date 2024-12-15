@@ -26,6 +26,23 @@ def input_data(request):
         names = request.POST.getlist('name')
         diagonises = request.POST.getlist('diagonised')
         modalities = request.POST.getlist('modality')
+        organs = request.POST.getlist('organ')
+        ages = request.POST.getlist('age')
+        systolic_blood_pressures = request.POST.getlist('systolic_blood_pressure')
+        diastolic_blood_pressures = request.POST.getlist('diastolic_blood_pressure')
+        cholesterol_levels = request.POST.getlist('cholesterol_level')
+        sugar_levels = request.POST.getlist('sugar_level')
+        blood_oxygen_saturations = request.POST.getlist('blood_oxygen_saturation')
+        heart_rates = request.POST.getlist('heart_rate')
+        smokings = request.POST.getlist('smoking')
+        alcohols = request.POST.getlist('alcohol')
+        physically_inactives = request.POST.getlist('physically_inactive')
+        stresss = request.POST.getlist('stress')
+        weights = request.POST.getlist('weight')
+        heights = request.POST.getlist('height')
+        genders = request.POST.getlist('gender')
+        electrolyte_levels = request.POST.getlist('electrolyte_level')
+        chronic_kidneys = request.POST.getlist('chronic_kidneys')
 
         # Create a new Excel workbook
         wb = openpyxl.Workbook()
@@ -33,11 +50,11 @@ def input_data(request):
         sheet.title = 'User Data'
 
         # Add headers to the Excel file
-        sheet.append(['Name', 'Diagonised','Modality'])
+        sheet.append(['Name', 'Diagonised','Modality','Organ','Age','Systolic_blood_pressure','Diastolic_blood_pressure','Cholesterol_level','Sugar_level','Blood_oxygen_saturation','Heart_rate','Smoking','Alcohol','Physically_inactive','Stress','Weight','Height','Gender','Electrolyte_level','Chronic_kidney'])
 
         # Populate the Excel file with the submitted data
-        for name, diag, modality in zip(names, diagonises, modalities):
-            sheet.append([name, diag, modality])
+        for name, diag, modality,organ,age,systolic_blood_pressure,diastolic_blood_pressure,cholesterol_level,sugar_level, blood_oxygen_saturation,heart_rate,smoking,alcohol,physically_inactive,stress,weight,height,gender,electrolyte_level,chronic_kidney in zip(names, diagonises, modalities,organs,ages,systolic_blood_pressures,diastolic_blood_pressures,cholesterol_levels,sugar_levels, blood_oxygen_saturations,heart_rates,smokings,alcohols,physically_inactives,stresss,weights,heights,genders,electrolyte_levels,chronic_kidneys):
+            sheet.append([name, diag, modality,organ,age,systolic_blood_pressure,diastolic_blood_pressure,cholesterol_level,sugar_level, blood_oxygen_saturation,heart_rate,smoking,alcohol,physically_inactive,stress,weight,height,gender,electrolyte_level,chronic_kidney])
 
         # Prepare the response to send the Excel file
         response = HttpResponse(
@@ -49,7 +66,7 @@ def input_data(request):
         return response
 
     # Initial rows to display in the form (can be empty or predefined)
-    initial_rows = [{'name': '', 'diagonised': '', 'modality': ''}]
+    initial_rows = [{'name': '', 'diagonised': '', 'modality': '','organ':'','age' : '','systolic_blood_pressure' : '','diastolic_blood_pressure' : '','cholesterol_level' : '','sugar_level' : '', 'blood_oxygen_saturation' : '','heart_rate' : '','smoking' : '','alcohol' : '','physically_inactive' : '','stress' : '','weight': '','height' : '','gender':'','electrolyte_level':'','chronic_kidney':''}]
     return render(request, 'input_form.html', {'rows': initial_rows}) 
 
 

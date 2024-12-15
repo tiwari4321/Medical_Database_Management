@@ -114,9 +114,9 @@
   {% endcomment %}
   <br />
   <div style="text-align: center">
-    <button 
+    {% comment %} <button 
       onclick="window.location.href='{% url 'about' %}'"
-      {% comment %} href="{%url 'login'%}" {% endcomment %}
+      {% comment %} href="{%url 'login'%}" 
       style="
         background-color: #0056b3;
         color: white;
@@ -129,7 +129,7 @@
       
     >
       Learn More
-    </button>
+    </button> {% endcomment %}
   </div>
   {% comment %}
   <button

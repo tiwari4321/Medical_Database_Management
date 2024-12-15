@@ -27,4 +27,5 @@ class DiseaseForm(forms.ModelForm):
 
     class Meta:
         model = DiseaseDetails
-        fields = ['name', 'modality', 'diagonised', 'img','organ']
+        fields = ['name', 'modality', 'diagonised', 'img','organ','age','systolic_blood_pressure','diastolic_blood_pressure','cholesterol_level','sugar_level','blood_oxygen_saturation','heart_rate','smoking','alcohol','physically_inactive','stress','weight','height','gender','electrolyte_level','chronic_kidney']
+        

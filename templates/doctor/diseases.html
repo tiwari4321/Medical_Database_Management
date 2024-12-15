@@ -46,10 +46,11 @@
             
             <td> <button type="button" class ="btn btn-primary"onclick="myfun('{{disease.img}}')">View img</button></td>
           </tr>
+          
           {%endfor%}
         </tbody>
       </table>
- 
+      
       <form method="post" action="{% url 'input_data' %}">
         {% csrf_token %}
         <table>
@@ -58,21 +59,53 @@
                     <th>Name</th>
                     <th>Diagonised</th>
                     <th>Modality</th>
+                    <th>Age</th>
+                    <th>Systolic_blood_pressure</th>
+                    <th>Diastolic_blood_pressure</th>
+                    <th>Cholesterol_level</th>
+                    <th>Sugar_level</th>
+                    <th>Blood_oxygen_saturation</th>
+                    <th>Heart_rate</th>
+                    <th>Smoking</th>
+                    <th>Alcohol</th>
+                    <th>Physically_inactive</th>
+                    <th>Stress</th>
+                    <th>Weight</th>
+                    <th>Height</th>
+                    <th>Gender</th>
+                    <th>Electrolyte_level</th>
+                    <th>Chronic_kidney</th>
                 </tr>
             </thead>
             <tbody id="data-rows">
                 {% for disease in diseases %}
                 <tr>
                     <td><input type="text" name="name" value="{{ disease.name }}" required></td>
-                    <td><input type="text" name="age" value="{{ disease.diagonised }}" required></td>
-                    <td><input type="text" name="city" value="{{ disease.modality }}" required></td>
+                    <td><input type="text" name="diagonised" value="{{ disease.diagonised }}" required></td>
+                    <td><input type="text" name="modality" value="{{ disease.modality }}" required></td>
+                    <td><input type="floatformat" name="age" value="{{ disease.age }}" required></td>
+                    <td><input type="text" name="systolic_blood_pressure" value="{{ disease.systolic_blood_pressure }}" required></td>
+                    <td><input type="text" name="diastolic_blood_pressure" value="{{ disease.diastolic_blood_pressure }}" required></td>
+                    <td><input type="text" name="cholesterol_level" value="{{ disease.cholesterol_level }}" required></td>
+                    <td><input type="text" name="sugar_level" value="{{ disease.sugar_level }}" required></td>
+                    <td><input type="text" name="blood_oxygen_saturation" value="{{ disease.blood_oxygen_saturation }}" required></td>
+                    <td><input type="text" name="heart_rate" value="{{ disease.heart_rate }}" required></td>
+                    <td><input type="text" name="smoking" value="{{ disease.smoking }}" required></td>
+                    <td><input type="text" name="alcohol" value="{{ disease.alcohol }}" required></td>
+                    <td><input type="text" name="physically_inactive" value="{{ disease.physically_inactive }}" required></td>
+                    <td><input type="text" name="stress" value="{{ disease.stress }}" required></td>
+                    <td><input type="text" name="weight" value="{{ disease.weight }}" required></td>
+                    <td><input type="text" name="height" value="{{ disease.height }}" required></td>
+                    <td><input type="text" name="gender" value="{{ disease.gender }}" required></td>
+                    <td><input type="text" name="electrolyte_level" value="{{ disease.electrolyte_level }}" required></td>
+                    <td><input type="text" name="chronic_kidney" value="{{ disease.chronic_kidney }}" required></td>
                 </tr>
               
                 {% endfor %}
             </tbody>
         </table>
         <button type="button" onclick="addRow()">Add Row</button>
-        <button type="submit">Download Excel</button>
+        <button type="submit" >Download Excel</button>
     </form>
 
       <nav aria-label="...">

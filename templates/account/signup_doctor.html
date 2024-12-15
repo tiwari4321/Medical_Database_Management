@@ -24,13 +24,13 @@
 				<input type="password" class="form-control" name="confpassword" placeholder="Confirm Password" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;" required>
 			</div>
 
-			<div style="margin-bottom: 20px;">
+			{% comment %} <div style="margin-bottom: 20px;">
 				<input type="text" class="form-control" id="licenseKey" name="license_key" placeholder="License Key" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;" required>
 				<span id="licenseError" style="display: none; color: red; font-size: 12px;">Invalid License Key</span>
-			</div>
+			</div> {% endcomment %}
 
 			<div style="margin-bottom: 15px;">
-				<input type="submit" id="submitButton" class="btn formbtn" value="Sign Up" style="width: 100%; padding: 12px; background-color: #f06292; color: #fff; border: none; border-radius: 5px; cursor: pointer;" disabled>
+				<input type="submit" id="submitButton" class="btn formbtn" value="Sign Up" style="width: 100%; padding: 12px; background-color: #f06292; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
 			</div>
 			<div style="text-align: center;">
 				<a
@@ -47,7 +47,7 @@
 
 {% block script %}
 <script>
-	const validLicenseKey = "ABC123"; // Replace with your actual valid license key
+	{% comment %} const validLicenseKey = "ABC123"; // Replace with your actual valid license key
 	const licenseInput = document.getElementById("licenseKey");
 	const submitButton = document.getElementById("submitButton");
 	const licenseError = document.getElementById("licenseError");
@@ -60,7 +60,7 @@
 			licenseError.style.display = "inline";
 			submitButton.disabled = true;
 		}
-	});
+	}); {% endcomment %}
 </script>
 {% endblock script %}
 {% comment %} {% extends 'basic.html' %}
